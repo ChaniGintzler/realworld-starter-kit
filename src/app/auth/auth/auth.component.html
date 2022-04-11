@@ -1,0 +1,33 @@
+<div class="auth-page">
+    <div class="container page">
+        <div class="row">
+
+            <div class="col-md-6 offset-md-3 col-xs-12">
+                <h1 class="text-xs-center">{{title}}</h1>
+                <p class="text-xs-center" *ngIf="authType=='register'">
+                    <a routerLink="/login">Have an account?</a>
+                </p>
+
+              <app-errors [errors]="errorsList"></app-errors>
+                <form [formGroup]="form">
+                    <fieldset class="form-group" *ngIf="authType=='register'">
+                        <input class="form-control form-control-lg" type="text" formControlName="username"
+                        placeholder="Your Name">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" type="text" formControlName="email"
+                        placeholder="Email">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <input class="form-control form-control-lg" formControlName="password"
+                        type="password" placeholder="Password">
+                    </fieldset>
+                    <button class="btn btn-lg btn-primary pull-xs-right" (click)="submitForm()">
+                       {{ title}}
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

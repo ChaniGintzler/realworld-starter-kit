@@ -1,0 +1,28 @@
+<div>
+<app-article-item *ngFor="let article of articles$ | async" [article]="article">
+
+</app-article-item>
+<div class="app-article-preview"
+  [hidden]="!(articlesLoading$ | async )">
+  Loading articles...
+</div>
+<div class="app-article-preview"
+ *ngIf="!(articlesLoading$ | async ) && (!(articles$ | async)?.length || (articles$ | async)?.length === 0)">
+  No articles are here... yet.
+</div>
+
+<nav [hidden]="(articlesLoading$ | async )|| (totalPages$ |async)">
+  <ul class="pagination">
+
+    <li class="page-item"
+      [ngClass]="{'active': pageNumber === currentPage}"
+      *ngFor="let pageNumber of totalPages$ |async"
+      (click)="moveToPage(pageNumber)">
+
+      <a class="page-link" >{{ pageNumber }}</a>
+
+    </li>
+
+  </ul>
+</nav>
+</div>
